@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>User Information</title>
+</head>
+<body>
+<div align="center">
+    <h1>User List</h1>
+
+    <div sec:authorize="isAuthenticated()">
+        Welcome <b><span sec:authentication="name">Username</span></b> &nbsp;
+        <i><span sec:authentication="principal.authorities">Roles</span></i>
+    </div>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+
+    <!--<div sec:authorize="hasAnyAuthority( 'ADMIN')">
+    <a href="/new">Add Task</a>
+    </div>-->
+
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th> ID</th>
+            <th> Name</th>
+            <th> Email</th>
+            <th> UserName</th>
+
+            <th sec:authorize="hasAnyAuthority('ADMIN','EMPLOYEE')">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.id}"> Id</td>
+            <td th:text="${user.name}"> Name</td>
+            <td th:text="${user.email}"> Email</td>
+            <td th:text="${user.username}"> UserName</td>
+
+
+            <td sec:authorize="hasAnyAuthority('EMPLOYEE','ADMIN')">
+                <div sec:authorize="hasAnyAuthority('EMPLOYEE')">
+                    <a th:href="@{'/employee/list_of_task/' + ${user.id }}">View List Task</a>
+                </div> &nbsp;&nbsp;&nbsp;
+                <div sec:authorize="hasAnyAuthority('EMPLOYEE')">
+                    <a th:href="@{'/employee/view_user_detail/' + ${user.id}}">View User Deatils</a>
+                </div>
+                &nbsp;&nbsp;&nbsp;
+                <div sec:authorize="hasAnyAuthority('ADMIN')">
+                    <a th:href="@{'/admin/view_user_detail/' + ${user.id}}">View User Deatils</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+        <div sec:authorize="hasAnyAuthority( 'ADMIN')">
+            <a href="/admin/add_task">Add Task</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/admin/view_list_task">View Task List</a>
+        </div>
+
+    </table>
+</div>
+</body>
+</html>

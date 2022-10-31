@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Add WorkLog</title>
+</head>
+<body>
+<div align="center">
+    <h1>Add Worklog </h1>
+    <br/>
+    <form action="#" th:action="@{/employee/save_worklog}" th:object="${worklog}"
+          method="post">
+
+        <table border="2" cellpadding="10">
+
+            <tr>
+                <td> Date:</td>
+                <td>
+                    <input type="date" name="date"> </input>
+                </td>
+            </tr>
+            <tr>
+                <td> TimeSpent:</td>
+                <td>
+                    <input type="text" name="timeSpent"> </input>
+                </td>
+            </tr>
+            <tr>
+                <td> WorkDescription:</td>
+                <td>
+                    <input type="text" name="workDescription"> </input>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center><a href="/">Go Back</a></center>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

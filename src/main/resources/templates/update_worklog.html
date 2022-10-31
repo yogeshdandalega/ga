@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Update</title>
+</head>
+<body>
+<div align="center">
+    <h1>Update Worklog</h1>
+    <br/>
+    <form action="#" th:action="@{/employee/update_worklog}" th:object="${worklog}"
+          method="post">
+        <table border="2">
+            <tr>
+                <td>User ID:</td>
+                <td><input hidden type="text" th:field="*{id}" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td><input type="text" th:field="*{date}"/></td>
+            </tr>
+            <tr>
+                <td>TimeSpent :</td>
+                <td><input type="text" th:field="*{timeSpent}"/></td>
+
+            </tr>
+            <tr>
+                <td>WorkDescription :</td>
+                <td><input type="text" th:field="*{workDescription}"/></td>
+                <td><input hidden type="text" th:field="*{task.id}"/></td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Update</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center><a href="/">Go Back</a></center>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+</body>
+</html>

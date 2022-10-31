@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>View User And Update</title>
+</head>
+<body>
+<div align="center">
+    <h1>View User</h1>
+    <br/>
+    <form action="#" th:action="@{/admin/assing_task_to_user}" th:object="${user}"
+          method="post">
+        <table border="2">
+            <tr>
+
+            </tr>
+            <div class="form-group blu-margin">
+                <th> Select Name For Assign Task</th>
+                <td><select class="form-control" name="user" id="user">
+                    <option value="0">Select Name Here </option>
+                    <option th:each="user : ${userList}"
+                            th:value="${user.id}"
+                            th:text="${user.name}">
+                    </option>
+                </select>
+                </td>
+            </div>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Assing Task To User</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center><a href="/">Go Back</a></center>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+</body>
+</html>
+
+<!--<td>Select Name</td>
+<td>  <select path="user" >
+    <option items="${user.name}" />
+
+</select></td>
+<select th:field="*{listname }">
+    <option value="default">Select a Name</option>
+    <option th:each="${listname }" th:value="${listname }"th:text="${listname }"/>
+</select>
+
+<div class="form-group blu-margin">
+                <select class="form-control" th:field="${userList.name}"  id="dropOperator">
+                    <option value="0">select operator</option>
+                    <option th:each="user : ${userList}"  th:text="${user.name}"></option>
+                </select>
+            </div>
+-->

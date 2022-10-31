@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>User Management</title>
+
+
+</head>
+<body>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+
+                        <div style="text-align: center; font-weight: bold" align="center">
+                            <h1>List Of Worklog</h1>
+                        </div>
+                    </div>
+                    <div class="card-body" align="center">
+                        <table id="data-table" class="table table-striped table-bordered" border="2">
+                            <thead>
+                            <tr>
+                                <th> ID</th>
+                                <th>Date</th>
+                                <th>TimeSpent</th>
+                                <th>WorkDescription</th>
+
+                                <th sec:authorize="hasAnyAuthority('EMPLOYEE')">Action</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="worklog:${listWorklog}">
+                                <td th:text="${worklog.id}"> ID</td>
+                                <td th:text="${worklog.date}"> Date</td>
+                                <td th:text="${worklog.timeSpent}"> TimeSpent</td>
+                                <td th:text="${worklog.workDescription}"> WorkDescription</td>
+
+
+                                <td sec:authorize="hasAnyAuthority('EMPLOYEE')">
+                                    <div sec:authorize="hasAnyAuthority('EMPLOYEE')">
+                                        <a th:href="@{'/employee/update_worklog/' + ${worklog.id}}">Update</a><br>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                            <tr>
+                                <td colspan="5" sec:authorize="hasAnyAuthority('EMPLOYEE')">
+                                    <div sec:authorize="hasAnyAuthority('EMPLOYEE')">
+                                        <center><a href="/employee/total_time_spend">Time Estimate For Task</a></center>
+                                    </div>
+                                </td>
+                                <td colspan="5" sec:authorize="hasAnyAuthority('ADMIN')">
+                                    <div sec:authorize="hasAnyAuthority('ADMIN')">
+                                        <center><a href="/admin/total_time_spend">Time Estimate For Task</a></center>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <center><a href="/">Go Back</a></center>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
